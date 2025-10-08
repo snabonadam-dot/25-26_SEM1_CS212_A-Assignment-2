@@ -171,13 +171,24 @@ class TestFileManagerTODOTasks(unittest.TestCase):
 
     def test_list_directory_tree_return_statements_todo(self):
         """Test TODO: Add return None statements in list_directory_tree base cases."""
-        # Check if the source code has explicit "return None" statements
+        # Check if the source code has explicit "return None" statements (not in comments)
         import inspect
+        import re
         
         try:
             source = inspect.getsource(file_manager.list_directory_tree)
-            # Count explicit "return None" statements in the function
-            explicit_returns = source.count("return None")
+            # Count actual "return None" statements (not in comments)
+            # Remove comments first, then count
+            lines = source.split('\n')
+            code_lines = []
+            for line in lines:
+                # Remove everything after # (comments)
+                code_part = line.split('#')[0].strip()
+                if code_part:
+                    code_lines.append(code_part)
+            
+            code_without_comments = '\n'.join(code_lines)
+            explicit_returns = code_without_comments.count("return None")
             
             # Should have at least 3 explicit return None statements for the base cases
             self.assertGreaterEqual(explicit_returns, 3, 
@@ -358,11 +369,20 @@ class TestFileManagerTODOTasks(unittest.TestCase):
                         pass
 
         # Test 7: List directory tree return statements
-        # Check if the source code has explicit "return None" statements
+        # Check if the source code has explicit "return None" statements (not in comments)
         try:
             import inspect
             source = inspect.getsource(file_manager.list_directory_tree)
-            explicit_returns = source.count("return None")
+            # Remove comments first, then count
+            lines = source.split('\n')
+            code_lines = []
+            for line in lines:
+                # Remove everything after # (comments)
+                code_part = line.split('#')[0].strip()
+                if code_part:
+                    code_lines.append(code_part)
+            code_without_comments = '\n'.join(code_lines)
+            explicit_returns = code_without_comments.count("return None")
             if explicit_returns >= 3:
                 todo_status["list_directory_tree_return_statements"] = True
         except:
@@ -516,11 +536,20 @@ class TestFileManagerTODOTasks(unittest.TestCase):
                         pass
 
         # Test 7: List directory tree return statements
-        # Check if the source code has explicit "return None" statements
+        # Check if the source code has explicit "return None" statements (not in comments)
         try:
             import inspect
             source = inspect.getsource(file_manager.list_directory_tree)
-            explicit_returns = source.count("return None")
+            # Remove comments first, then count
+            lines = source.split('\n')
+            code_lines = []
+            for line in lines:
+                # Remove everything after # (comments)
+                code_part = line.split('#')[0].strip()
+                if code_part:
+                    code_lines.append(code_part)
+            code_without_comments = '\n'.join(code_lines)
+            explicit_returns = code_without_comments.count("return None")
             if explicit_returns >= 3:
                 todo_status["list_directory_tree_return_statements"] = True
         except:
@@ -690,12 +719,20 @@ def print_todo_summary():
                     pass
 
     # Test 7: List directory tree return statements
-    # Check if the source code has explicit "return None" statements
+    # Check if the source code has explicit "return None" statements (not in comments)
     try:
         import inspect
         source = inspect.getsource(file_manager.list_directory_tree)
-        # Count explicit "return None" statements in the function
-        explicit_returns = source.count("return None")
+        # Remove comments first, then count
+        lines = source.split('\n')
+        code_lines = []
+        for line in lines:
+            # Remove everything after # (comments)
+            code_part = line.split('#')[0].strip()
+            if code_part:
+                code_lines.append(code_part)
+        code_without_comments = '\n'.join(code_lines)
+        explicit_returns = code_without_comments.count("return None")
         if explicit_returns >= 3:  # Should have at least 3 explicit return None statements
             todo_status["list_directory_tree_return_statements"] = True
     except:

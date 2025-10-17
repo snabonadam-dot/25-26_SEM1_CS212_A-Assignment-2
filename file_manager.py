@@ -168,5 +168,6 @@ def find_files_by_extension(directory, extension, current_path=""):
         pass  # Skip inaccessible directories
 
     return found_files
+    found_files()
 
 

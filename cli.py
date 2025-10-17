@@ -10,6 +10,7 @@ from file_manager import get_and_display_file_size
 
 
 def display_welcome():
+
     """Display welcome message to the user."""
     print("=" * 50)
     print("   Welcome to Python CLI File Manager!")
@@ -30,6 +31,7 @@ def get_user_choice():
     print()
 
     choice = input("Enter your choice (help/calc/info/quit): ").strip().lower()
+    return get_user_choice()t
     # TODO: Add code to return the choice
 
 
